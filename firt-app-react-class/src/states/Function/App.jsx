@@ -12,6 +12,9 @@ export default function App() {
         // setCounter(counter++)
         // 4.
         // setCounter((prevCounterValue)=>prevCounterValue+1)
+
+        // same function will execute at last one in setcounter(counter+5)
+        // same function will execute at last one in setcounter(counter+4)
     }
     const decrement=()=>{
         setCounter(counter-1)
