@@ -30,7 +30,7 @@ export default class App extends Component {
   render() {
     return (
         <div className='center'>
-        <p>Counter:{this.state.countercounter}</p>
+        <p>Counter:{this.state.counter}</p>
         <button onClick={this.increment}>Increment</button>
         <button onClick={this.decrement}>Decrement</button>
       </div>
