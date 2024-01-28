@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Input(props) {
+    console.log(props);
     let [todo,setTodo]=useState('');
     let [error,setError]=useState(false);
 
@@ -17,13 +18,21 @@ export default function Input(props) {
 
     const submit=(event)=>{
     if(todo.length>0){
-        props.addTodo(todo);
+        if (props.editData.index === -1) {
+            props.addTodo(todo);
+        }else{
+            props.updateTodo(props.editData.index,todo);
+        }
     }else{
         setError(true)
     }
       event.preventDefault();
       setTodo('')
     }
+
+    useEffect(()=>{
+        setTodo(props.editData.data)
+    },[props.editData.index,props.editData.data,setTodo])
 
   return (
     <form className='row' onSubmit={submit}>
@@ -39,7 +48,11 @@ export default function Input(props) {
             }
         </div>
         <div className="col-2">
-            <button type='submit' className='btn btn-primary mb-3'>Add Task</button>
+            <button type='submit' className='btn btn-primary mb-3'>
+                {
+                    props.editData.index===-1 ? 'Add Task' :'Update Task'
+                }
+            </button>
         </div>
     </form>
   )
